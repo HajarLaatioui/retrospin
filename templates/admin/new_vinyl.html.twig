@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Vinyl{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Ajouter un nouveau vinyle</h1>
+
+        <div class="card shadow-sm p-4">
+            {{ form_start(form) }}
+            <div class="row g-3">
+                <div class="col-md-6">
+                    {{ form_row(form.title) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.artist) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.genre) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.stock) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.isAvailable) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.releaseYear) }}
+                </div>
+                <div class="col-12">
+                    {{ form_row(form.description) }}
+                </div>
+                <div class="col-12 text-center">
+                    <button class="btn btn-primary mt-3 px-4" type="submit">Enregistrer</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

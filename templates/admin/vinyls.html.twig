@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des vinyles{% endblock %}
+
+{% block body %}
+    <h1>Liste des vinyles 🎵</h1>
+
+    {% if vinyls is empty %}
+        <p>Aucun vinyle enregistré pour le moment.</p>
+    {% else %}
+        <div class="card">
+            <ul class="list-group list-group-flush">
+                {% for vinyl in vinyls %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>{{ vinyl.title }}</strong>
+                            {% if vinyl.artist %}
+                                — {{ vinyl.artist.name }}
+                            {% endif %}
+                            {% if vinyl.genre %}
+                                ({{ vinyl.genre.name }})
+                            {% endif %}
+                        </div>
+                        <div class="d-flex gap-2">
+                            <a href="{{ path('admin_vinyl_edit', { id: vinyl.id }) }}" class="btn btn-sm btn-warning">✏️ Modifier</a>
+                            <form method="post" action="{{ path('admin_vinyl_delete', { id: vinyl.id }) }}" style="display:inline-block;" onsubmit="return confirm('Supprimer ce vinyle ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ vinyl.id) }}">
+                                <button class="btn btn-sm btn-danger">🗑️ Supprimer</button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}

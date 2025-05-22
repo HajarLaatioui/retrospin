@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes emprunts{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>📚 Mes emprunts</h1>
+
+        {% if loans is empty %}
+            <p>Vous n'avez aucun emprunt pour le moment.</p>
+        {% else %}
+            <div class="row row-cols-1 g-4">
+                {% for loan in loans %}
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ loan.vinyl.title }}</h5>
+                                <p class="card-text mb-2">
+                                    Emprunté le : {{ loan.borrowedAt ? loan.borrowedAt|date('d/m/Y H:i') : 'Non précisé' }}<br>
+                                    Retour prévu : {{ loan.returnedAt ? loan.returnedAt|date('d/m/Y H:i') : 'Non défini' }}<br>
+                                    Assurance : {{ loan.insuranceFee ?? 'N/A' }} €<br>
+                                    Prix total : {{ loan.price ?? 'N/A' }} €<br>
+                                    {% if loan.vinyl.stock == 0 %}
+                                        <span class="text-danger">⚠️ Stock épuisé</span>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

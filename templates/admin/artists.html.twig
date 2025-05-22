@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des artistes{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row mb-3">
+            <div class="col">
+                <h1>🎤 Liste des artistes</h1>
+            </div>
+            <div class="col text-end">
+                <a href="{{ path('admin_artist_new') }}" class="btn btn-success">➕ Ajouter un artiste</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <ul class="list-group list-group-flush">
+                {% for artist in artists %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ artist.name }}
+                        <div>
+                            <a href="{{ path('admin_artist_edit', { id: artist.id }) }}" class="btn btn-sm btn-warning">✏️ Modifier</a>
+                            <form method="post" action="{{ path('admin_artist_delete', { id: artist.id }) }}" style="display:inline-block;" onsubmit="return confirm('Supprimer cet artiste ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ artist.id) }}">
+                                <button class="btn btn-sm btn-danger">🗑️ Supprimer</button>
+                            </form>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="list-group-item">Aucun artiste enregistré.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

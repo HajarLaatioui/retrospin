@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Emprunter un vinyle{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>🎶 Emprunter un vinyle</h1>
+
+        {{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
+            <div class="col-md-6">
+                {{ form_row(form.vinyl) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.borrowedAt) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.returnedAt) }}
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary">Valider l’emprunt</button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

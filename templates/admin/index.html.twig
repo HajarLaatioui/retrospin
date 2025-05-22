@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Admin - RetroSpin{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Espace Administrateur 🎛️</h1>
+        <p>Bienvenue {{ app.user.email }} !</p>
+
+        <div class="list-group">
+            <a href="{{ path('app_home') }}" class="list-group-item list-group-item-action">🏠 Voir le site public</a>
+            <a href="{{ path('admin_vinyl_list') }}" class="list-group-item list-group-item-action">🎵 Gérer les vinyles</a>
+            <a href="{{ path('admin_vinyl_new') }}" class="list-group-item list-group-item-action">➕ Ajouter un vinyle</a>
+            <a href="{{ path('admin_artist_list') }}" class="list-group-item list-group-item-action">🎨 Gérer les artistes</a>
+            <a href="{{ path('admin_artist_new') }}" class="list-group-item list-group-item-action">➕ Ajouter un artiste</a>
+            <a href="{{ path('admin_loan_list') }}" class="list-group-item list-group-item-action">📋 Gérer les demandes de prêt</a>
+        </div>
+    </div>
+{% endblock %}

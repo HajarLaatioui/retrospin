@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - RetroSpin{% endblock %}
+
+{% block body %}
+    <div class="container text-center mt-5 p-4 bg-light rounded shadow-sm">
+        <h1>Bienvenue sur RetroSpin 🎶</h1>
+        <p>Découvrez, empruntez et partagez des vinyles vintage.</p>
+        {% if app.user %}
+            <p>Connecté en tant que : {{ app.user.email }}</p>
+        {% else %}
+            <a href="{{ path('app_login') }}">Connexion</a>
+        {% endif %}
+    </div>
+    <div class="container mt-5">
+        <h2 class="text-center mt-4">🎧 Notre catalogue</h2>
+        <div class="row">
+            {% for vinyl in vinyls %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body p-4">
+                            <h5 class="card-title">{{ vinyl.title }}</h5>
+                            <p class="card-text">
+                                Artiste : {{ vinyl.artist.name }}<br>
+                                Genre : {{ vinyl.genre.name }}
+                            </p>
+                        </div>
+                        {% if app.user %}
+                            <div class="card-footer bg-transparent border-top-0">
+                                <a href="{{ path('loan_new_with_vinyl', {'id': vinyl.id}) }}" class="btn btn-primary btn-sm">🎵 Emprunter</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

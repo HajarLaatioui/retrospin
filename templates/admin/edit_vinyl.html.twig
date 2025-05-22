@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le vinyle{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Modifier : {{ vinyl.title }}</h1>
+
+        {{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
+
+            <div class="col-md-6">
+                {{ form_row(form.title) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.artist) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.genre) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.stock) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.isAvailable) }}
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-warning">Mettre à jour</button>
+            </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

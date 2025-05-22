@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes prêts{% endblock %}
+
+{% block body %}
+<h1 class="mb-4">📚 Mes prêts</h1>
+
+{% if loans is empty %}
+    <div class="alert alert-info">Vous n'avez fait aucune demande de prêt.</div>
+{% else %}
+    <div class="row row-cols-1 g-4">
+        {% for loan in loans %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ loan.vinyl ? loan.vinyl.title : 'Vinyle supprimé' }}
+                        </h5>
+                        <p class="card-text">
+                            <strong>Du :</strong> {{ loan.borrowedAt|date('d/m/Y') }}<br>
+                            <strong>Au :</strong> {{ loan.returnedAt|date('d/m/Y') }}<br>
+                            <strong>Statut :</strong>
+                            {% if loan.status == 'approved' %}
+                                <span class="badge bg-success">Approuvé</span>
+                            {% elseif loan.status == 'rejected' %}
+                                <span class="badge bg-danger">Refusé</span>
+                            {% else %}
+                                <span class="badge bg-warning text-dark">En attente</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}
