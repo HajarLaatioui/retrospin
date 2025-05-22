@@ -1,0 +1,47 @@
+
+⸻
+
+RetroSpin 🎵
+
+RetroSpin est une application web permettant la gestion et la location de vinyles. Développée avec Symfony et Docker, elle offre une interface conviviale pour les utilisateurs souhaitant découvrir, réserver et gérer leur collection de vinyles.
+
+🚀 Fonctionnalités
+	•	Gestion des utilisateurs : création, authentification, rôles
+	•	Catalogue de vinyles : par artiste, genre, année de sortie
+	•	Système de location : réservation, historique des prêts
+	•	Interface utilisateur : intuitive et responsive
+	•	Notifications : alertes pour les retours de vinyles ￼
+
+🛠️ Technologies utilisées
+	•	Backend : Symfony 6.2
+	•	Base de données : MySQL
+	•	Conteneurisation : Docker
+	•	Frontend : Twig, Bootstrap
+	•	Tests : PHPUnit
+
+📦 Prérequis
+	•	Docker et Docker Compose installés
+	•	PHP 8.2 ou supérieur
+	•	Composer
+
+📥 Installation
+
+Clonez le repository et accédez au répertoire du projet : 
+git clone https://github.com/votre-utilisateur/retrospin.git
+cd retrospin
+
+
+Construisez et lancez les conteneurs Docker :
+docker-compose up --build
+
+Cela démarrera les services nécessaires (PHP, MySQL, etc.).
+
+⚙️ Configuration
+
+Le fichier .env contient les variables d’environnement nécessaires à la configuration de l’application. Assurez-vous de les adapter selon votre environnement.
+
+🧪 Tests
+
+Pour exécuter les tests unitaires :
+docker-compose exec php vendor/bin/phpunit
+
