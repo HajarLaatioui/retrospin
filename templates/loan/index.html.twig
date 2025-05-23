@@ -18,8 +18,22 @@
                                 <p class="card-text mb-2">
                                     Emprunté le : {{ loan.borrowedAt ? loan.borrowedAt|date('d/m/Y H:i') : 'Non précisé' }}<br>
                                     Retour prévu : {{ loan.returnedAt ? loan.returnedAt|date('d/m/Y H:i') : 'Non défini' }}<br>
+                                    {% set badgeClass = {
+                                        'approved': 'success',
+                                        'rejected': 'danger',
+                                        'pending': 'warning'
+                                    }[loan.status.value] ?? 'secondary' %}
+
+                                    Statut :
+                                    <span class="badge bg-{{ badgeClass }}">{{ loan.status.value|capitalize }}</span><br>
                                     Assurance : {{ loan.insuranceFee ?? 'N/A' }} €<br>
                                     Prix total : {{ loan.price ?? 'N/A' }} €<br>
+                                    <div class="text-end">
+                                        <form method="post" action="{{ path('loan_delete', {'id': loan.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette demande ?');">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ loan.id) }}">
+                                            <button class="btn btn-danger btn-sm mt-2">Supprimer</button>
+                                        </form>
+                                    </div>
                                     {% if loan.vinyl.stock == 0 %}
                                         <span class="text-danger">⚠️ Stock épuisé</span>
                                     {% endif %}

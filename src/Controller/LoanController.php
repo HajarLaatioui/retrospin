@@ -47,7 +47,7 @@ class LoanController extends AbstractController
         ]);
     }
 
-    #[Route('/my-loans', name: 'loan_list')]
+    #[Route('/mes-prets', name: 'loan_list')]
     public function list(LoanRepository $loanRepository): Response
     {
         $user = $this->security->getUser();
@@ -56,5 +56,16 @@ class LoanController extends AbstractController
         return $this->render('loan/index.html.twig', [
             'loans' => $loans,
         ]);
+    }
+
+    #[Route('/loan/delete/{id}', name: 'loan_delete', methods: ['POST'])]
+    public function delete(Request $request, Loan $loan, EntityManagerInterface $em): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $loan->getId(), $request->request->get('_token'))) {
+            $em->remove($loan);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('loan_list');
     }
 }

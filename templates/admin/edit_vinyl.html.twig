@@ -8,25 +8,34 @@
 
         {{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
 
-            <div class="col-md-6">
-                {{ form_row(form.title) }}
-            </div>
-            <div class="col-md-6">
-                {{ form_row(form.artist) }}
-            </div>
-            <div class="col-md-6">
-                {{ form_row(form.genre) }}
-            </div>
-            <div class="col-md-6">
-                {{ form_row(form.stock) }}
-            </div>
-            <div class="col-md-6">
-                {{ form_row(form.isAvailable) }}
-            </div>
+        <div class="col-md-6">
+            {{ form_row(form.title) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.artist) }}
+        </div>
 
-            <div class="col-12">
-                <button class="btn btn-warning">Mettre à jour</button>
-            </div>
+        <div class="col-md-6">
+            {{ form_row(form.genre) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.stock) }}
+        </div>
+
+        <div class="col-md-6">
+            {{ form_row(form.isAvailable) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.releaseYear) }}
+        </div>
+
+        <div class="col-md-12">
+            {{ form_row(form.description) }}
+        </div>
+
+        <div class="col-12 text-end">
+            <button class="btn btn-warning">Mettre à jour</button>
+        </div>
 
         {{ form_end(form) }}
     </div>

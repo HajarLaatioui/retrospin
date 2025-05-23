@@ -67,7 +67,7 @@ class Artist
     public function removeVinyl(Vinyl $vinyl): static
     {
         if ($this->vinyls->removeElement($vinyl)) {
-            // set the owning side to null (unless already changed)
+        
             if ($vinyl->getArtist() === $this) {
                 $vinyl->setArtist(null);
             }
